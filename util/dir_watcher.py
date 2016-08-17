@@ -1,5 +1,5 @@
 """
-This was created by Connor Murray (connormurray7@gmail.com)
+Created by Connor Murray (connormurray7@gmail.com)
 on 8/8/2016
 
 It uses Daemon.py which was created by Sander Marechal found at
@@ -11,7 +11,7 @@ import os
 import Queue
 import threading
 import sys
-from subprocess import call
+import subprocess
 from daemon import Daemon
 
 class DirectoryWatcher(object):
@@ -25,7 +25,7 @@ class DirectoryWatcher(object):
         num_dir: integer of the current number of directories in DIRECTORY
     """
 
-    DIRECTORY = "/Users/Connormurrray/Desktop/test/jobs"
+    DIRECTORY = "/home/ubuntu/jobs"
     num_dir = 0
 
     def __init__(self):
@@ -62,9 +62,8 @@ class ApplicationRunner:
         if self.queue.empty(): 
             return
         directory = DirectoryWatcher.DIRECTORY + "/" + self.queue.get()
-        sys.stdout.write("Running job: " + directory)
         if os.path.isfile(directory + "/run.sh"):
-            call(["bash", directory + "/run.sh"])
+            subprocess.call(["bash", directory + "/run.sh"])
         else:
             sys.stderr.write("no run script here")
         self.queue.task_done()
@@ -94,9 +93,9 @@ class DirWatcherDaemon(Daemon):
 
 if __name__ == "__main__":
     daemon = DirWatcherDaemon('/tmp/dir_watcher.pid',
-                              '/Users/Connormurrray/Desktop/test/util/log/dir_watcher_stdin.log',
-                              '/Users/Connormurrray/Desktop/test/util/log/dir_watcher_stdout.log',
-                              '/Users/Connormurrray/Desktop/test/util/log/dir_watcher_stderr.log')
+                              '/home/ubuntu/util/log/dir_watcher_stdin.log',
+                              '/home/ubuntu/util/log/dir_watcher_stdout.log',
+                              '/home/ubuntu/util/log/dir_watcher_stderr.log')
     if len(sys.argv) == 2:
         if sys.argv[1] == 'start':
             daemon.start()

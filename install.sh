@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+# Created by Connor Murray (connormurray7@gmail.com) on 8/8/2016
+#
+# Requires two arguments, the full path to the .pem key for the AWS instance
+# and the public DNS address for the AWS instance
+#
+# For each job that you want to run, create a a shell script named "run.sh"
+# and then type "pushjob". This will copy all of the contents 
+# of the current directory and place them in a folder on the AWS instance.
+# The job scheduler will run the script, and save the output in the same folder.
 
 #Read user input
 AWS_KEY=$1
@@ -6,7 +15,7 @@ AWS_PUBLIC_DNS=$2
 AWS_USER="ubuntu"
 JOB_NUM=0
 
-#Give the full path to the .pem key file and the AWS public DNS address from the EC2 console.
+#Give the full path to the .pem key file and the AWS public DNS address 
 if [ "$#" -ne  "2" ]; then
     echo "Two arguments required, .pem full path and AWS Public DNS address "
     exit 1
@@ -30,11 +39,9 @@ sudo apt-get -qq upgrade;
 sudo apt-get -qq install build-essential;
 gcc -v;
 make -v;
-sudo chmod u+x util/dir_watcher.py;
 python util/dir_watcher.py start;
 EOF
 
 echo "Finished installing environment."
 echo "Type \"pushjob\" when inside directory containing a run script \"run.sh\" to push the contents of the directory to the box and begin executing the script"
 echo "There are logs contained in ~/util/logs "
-
