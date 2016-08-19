@@ -1,7 +1,3 @@
----
-layout: post
-title: AWS Jobs Environment
----
 ### _Introduction_
 This offers an easy lightweight way to submit "jobs" from your local machine to an Amazon EC2 instance. This is not meant for queuing jobs in a production environment, but rather is a convenient tool for submitting jobs to another instance. Written in Python, this sets up a job queue on the AWS instance and has a simple way of submitting jobs from your local machine.
 
