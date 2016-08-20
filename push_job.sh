@@ -15,6 +15,7 @@ if [ -e "$dir/run.sh"  ];then
     JOB_NUM=$((JOB_NUM+1))
     
     echo -e "#If the .pem directory changes or DNS information changes, it can be modified here\nAWS_KEY=$AWS_KEY AWS_USER=$AWS_USER AWS_PUBLIC_DNS=$AWS_PUBLIC_DNS JOB_NUM=$JOB_NUM" > $HOME/.aws_jobs/aws_consts.txt
+    echo -e "Uploaded job $JOB_NUM on $AWS_PUBLIC_DNS"
 
 else
     echo "$dir/run.sh";

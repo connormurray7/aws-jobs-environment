@@ -42,6 +42,7 @@ make -v;
 python util/dir_watcher.py start;
 EOF
 
+echo "----------------------------------"
 echo "Finished installing environment."
 echo "Type \"pushjob\" when inside directory containing a run script \"run.sh\" to push the contents of the directory to the box and begin executing the script"
 echo "There are logs contained in ~/util/logs "
