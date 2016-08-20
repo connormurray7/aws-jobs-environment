@@ -18,9 +18,22 @@ If you use bash,
 	
 	source ~/.bashrc
 
-If you use another type of shell then you will need to add the following line to your respective .rc 
+If you use another type of shell then you will need to add the following line to your respective .rc and then source it.
 
 	alias pushjob=<path to home dir>/.aws_jobs/push_job.sh
 	
 ### _Usage_
 For every job that you want to submit, you will need to create a "run.sh" file that contains what you want to run. The `pushjob` command will copy the contents of the directory that you're currently in and push it to the server. It will be placed into the job queue and run sequentially.
+
+###_Example_
+Ater installation, navigate inside the `example` folder. Execute the command 
+
+	pushjob
+If installed correctly it should push the contents of the directory to the box. If it doesn't work, check to make sure that you sourced the `~/.bashrc` or if you don't use bash then you may need to add an alias (check the installation directions above).
+
+Now log onto your box,
+	
+	cd $HOME/util/log
+	cat dir_watcher_stdout.log
+	
+You should see "I ran my first job!"
