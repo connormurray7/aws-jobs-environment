@@ -37,3 +37,7 @@ Now log onto your box,
 	cat dir_watcher_stdout.log
 	
 You should see "I ran my first job!"
+
+### _Credits_
+The `daemon.py` was taken from [this forum](https://web.archive.org/web/20160305151936/http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python). 
+
