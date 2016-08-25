@@ -26,7 +26,6 @@ class DirectoryWatcher(object):
     """
 
     DIRECTORY = "/home/ubuntu/jobs"
-    num_dir = 0
 
     def __init__(self):
         self.num_dir = len(os.listdir(self.DIRECTORY))
