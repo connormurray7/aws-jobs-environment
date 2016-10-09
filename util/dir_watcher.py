@@ -45,8 +45,8 @@ class DirectoryWatcher(object):
 
 class ApplicationRunner:
     """Driver for running the jobs.
-    
-    When "try_running()" is called, this class checks the queue for 
+
+    When "try_running()" is called, this class checks the queue for
     jobs to execute and then sychrnously (for now) executes the job.
 
     Attributes:
@@ -58,7 +58,7 @@ class ApplicationRunner:
 
     def try_running(self):
         """Runs job if queue isn't empty."""
-        if self.queue.empty(): 
+        if self.queue.empty():
             return
         directory = DirectoryWatcher.DIRECTORY + "/" + self.queue.get()
         if os.path.isfile(directory + "/run.sh"):
@@ -70,7 +70,7 @@ class ApplicationRunner:
 
 def driver():
     """The daemonized function that monitors the jobs directory.
-    
+
     Main loop that drivers the program.
     Creates two singletons, DirectoryWatcher and ApplicationRunner.
     """
@@ -86,7 +86,7 @@ def driver():
         time.sleep(60)
 
 class DirWatcherDaemon(Daemon):
-    """ Derives from Daemon, overrides the run method. """ 
+    """ Derives from Daemon, overrides the run method. """
     def run(self):
         driver()
 
